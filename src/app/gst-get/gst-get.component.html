@@ -1,0 +1,27 @@
+<div *ngIf="observableBusiness | async as businesses ; else loading">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Person Name</td>
+        <td>Business Name</td>
+        <td>GST Number</td>
+        <td colspan="2">Actions</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let business of businesses">
+        <td>{{ business.person_name }}</td>
+        <td>{{ business.business_name }}</td>
+        <td>{{ business.business_gst_number }}</td>
+        <td><a [routerLink]="['edit', business._id]" class="btn btn-primary">Edit</a></td>
+        <td><a (click)="deleteBusiness(business._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #loading>
+  <div class="jumbotron">
+    <h1 class="display-4">Loading ...</h1>
+  </div>
+</ng-template>
